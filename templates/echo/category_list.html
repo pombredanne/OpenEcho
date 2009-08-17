@@ -1,0 +1,16 @@
+{% extends "echo/base.html" %}
+{% block content %}
+<h1>{{ category|title }}</h1>
+
+<hr />
+{% if comments %}
+	{% for comment in comments %}
+		<div class="comment_summary">
+			{{ comment.comment_summary }}<br />
+			{{ comment.commenter.username }}<br />
+		</div><!-- /comment_summary -->
+	{% endfor %}
+{% else %}
+	<p>No {{ category|lower }} yet...</p>
+{% endif %}
+{% endblock %}

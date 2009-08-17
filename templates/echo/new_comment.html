@@ -1,0 +1,16 @@
+{% extends "echo/base.html" %}
+
+{% block content %}
+<div id="newcomment">
+	<p>{{ category_meta.prompt }}</p>
+	<form action="/echo/postComment" method="post">
+		<input type="radio" name="category" value="QUESTIONS" /> Question<br />
+		<input type="radio" name="category" value="IDEAS" /> Ideas<br />
+		<input type="radio" name="category" value="ISSUES" /> Issues<br />
+		<input type="radio" name="category" value="PRAISE" /> Praise<br />
+		<input type="hidden" name="commenter" value="{{ user.id }}" />
+		<textarea name="body" rows="8" cols="40"></textarea><br />
+		<input type="submit" value="Post" />
+	</form>
+</div>
+{% endblock %}

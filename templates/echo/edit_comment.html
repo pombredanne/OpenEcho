@@ -1,0 +1,16 @@
+{% extends "echo/base.html" %}
+
+{% block content %}
+<p>{{ comment.body }}</p>
+<p>Back to <a href="{% url feedback.echo.views.category comment.category %}">{{ comment.category|lower }}</a>
+<h3>Replies</h3>
+{% for reply in replies %}
+<p>{{ reply.body }}</p>
+<p>By:&nbsp;{{ reply.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ reply.dstamp_created|date:'M D Y'}}
+{% endfor %}
+<form action="/echo/{{ comment.id }}/reply/" method="post">
+	<input type="hidden" name="comment" value="{{ comment.id }}" />
+	<textarea name="body" rows="8" cols="40"></textarea><br />
+	<input type="submit" value="Reply">
+</form>
+{% endblock %}
