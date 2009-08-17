@@ -17,6 +17,7 @@ a, a:visited, a:hover {
 	font-weight: bold;
 	border-bottom-style: none;
 	color: #1d00fb;
+	border-style: none;
 }
 
 
@@ -97,10 +98,47 @@ a, a:visited, a:hover {
 	float: left;
 }
 
-#newcomment {
+#commentsearch {
 	margin-left: 12px;
 	margin-top: 17px;
 	margin-bottom: 28px;
+	font-size: 10pt;
+	font-variant: small-caps;
+}
+
+#commentsearch a {
+	border-bottom-style: none;
+}
+
+#linkbar {
+	padding-bottom: 7px;
+}
+.searchlink {
+	display: inline;
+	padding-right: 5px;
+}
+#question_link {
+	background: url(../images/help.png) no-repeat;
+	padding-left: 20px;
+}
+#idea_link {
+	background: url(../images/lightbulb.png) no-repeat;
+	padding-left: 20px;
+}
+#issue_link {
+	background: url(../images/bullet_error.png) no-repeat;
+	padding-left: 20px;
+}
+#praise_link {
+	background: url(../images/heart.png) no-repeat;
+	padding-left: 20px;
+}
+#question_link.link_selected  {
+	background-color: #e6e6e6;
+	border: 1px solid #ccc;
+	margin: 0;
+	padding-bottom: 5px;
+	padding-right: 5px;
 }
 
 .category_heading {
@@ -115,33 +153,48 @@ a, a:visited, a:hover {
 	margin-top: 9px;
 	margin-right: 6px;
 	font-variant: small-caps;
+	padding-left: 7px;
 }
 
 #faqs h2 {
-	background-color: #dfecfd;
+	background: #dfecfd url(../images/help.png) no-repeat 3px;
 }
 
 #ideas h2 {
-	background-color: #fcde89;
+	background: #fcde89 url(../images/lightbulb.png) no-repeat 3px;
 }
 
 #issues h2 {
-	background-color: #dcb9be;
+	background: #dcb9be url(../images/bullet_error.png) no-repeat 3px;
 }
 
 #praise h2 {
-	background-color: #e4ffd6;
+	background: #e4ffd6 url(../images/heart.png) no-repeat 3px;
 }
 
 .comment_summary {
-	margin-bottom: 7px;
+	margin-bottom: 15px;
+	margin-top: 15px;
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+	margin-right: 6px;
+	padding-bottom: 8px;
+}
+
+.comment_summary a {
+	margin-left: 10px;
 }
 
 .comment_summary p {
 	font-size: 9px;
 	text-indent: 10px;
+	margin-top: 5px;
 }
 
+
+
+
+/* detail edit styles */
 #comment_meta {
 	font-size: 9pt;
 }

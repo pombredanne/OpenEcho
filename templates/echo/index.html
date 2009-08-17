@@ -1,14 +1,27 @@
 {% extends "echo/base.html" %}
 
 {% block content %}
-<div id="newcomment">
+<div id="commentsearch">
 	<form action="/echo/search/" method="post">
-		<input type="radio" name="category" value="QUESTIONS" /> Question<br />
-		<input type="radio" name="category" value="IDEAS" /> Ideas<br />
-		<input type="radio" name="category" value="ISSUES" /> Issues<br />
-		<input type="radio" name="category" value="PRAISE" /> Praise<br />
-		<textarea name="search" rows="6" cols="30"></textarea><br />
-		<input type="submit" value="Continue" />
+		<div id="linkbar">
+			<div class="searchlink">
+				<a id="question_link" class="link_selected" href="#">Ask a question</a>
+			</div><!-- /searchlink -->
+			<div class="searchlink">
+				<a id="idea_link" href="#">Share your ideas</a>
+			</div><!-- /searchlink -->
+			<div class="searchlink">
+				<a id="issue_link" href="#">Report an issue</a>
+			</div><!-- /searchlink -->
+			<div class="searchlink">
+				<a id="praise_link" href="#">Atta Boy</a>
+			</div><!-- /searchlink -->
+		</div><!-- /linkbar -->
+		<div id="searchbox">
+			<input type="hidden" name="category" value="PRAISE" />
+			<textarea name="search" rows="4" cols="80"></textarea><br />
+			<input type="submit" value="Continue" />
+		</div><!-- /searchbox -->
 	</form>
 </div><!-- /newcomment -->
 
