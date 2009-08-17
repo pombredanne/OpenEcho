@@ -6,6 +6,22 @@
     font-family: Helvetica, Arial;
 }
 
+a, a:visited, a:hover {
+	color: #1c7ffc;
+	border-bottom-style: dotted;
+	border-bottom-width: 1px;
+	text-decoration: none;
+}
+
+.mainlink {
+	font-weight: bold;
+	border-bottom-style: none;
+	color: #1d00fb;
+}
+
+
+
+
 #header {
 	height: 39px;
 	background-color: #333;
@@ -23,6 +39,7 @@
 #footer {
 	background-color: #fff;
 	height: 58px;
+	max-height: 58px;
 	width: 100%;
 	position: relative;
 	border-top: 1px solid #4c4c4c;
@@ -40,7 +57,6 @@
 	margin-left: 10%;
 	height: 70%;
 	float: left;
-	
 	border: 2px solid #ccc;
 }
 
@@ -60,27 +76,112 @@
 #content {
 	float: left;
 	background-color: #f6f6f6;
+	width:  100%;
+	min-height: 700px;
 }
 
 #main_content {
-	width: 70%;
 	float: left;
 	border-right-style: solid;
 	border-right-color: #ccc;
 	border-right-width: 1px;
 	background-color: #ffffff;
 	padding-left: 6px;
-	height: 150%;
+	padding-bottom: 100%;
+	min-width: 60%;
+	max-width: 60%;
 }
 
 #main_sidebar {
 	position: relative;
 	float: left;
-	height: 150%;
 }
 
 #newcomment {
 	margin-left: 12px;
 	margin-top: 17px;
 	margin-bottom: 28px;
+}
+
+.category_heading {
+	font-size: 12pt;
+	text-align: left;
+	text-indent: 1em;
+	font-weight: normal;
+	font-style: normal;
+	padding-top: 6px;
+	padding-bottom: 6px;
+	margin-bottom: 10px;
+	margin-top: 9px;
+	margin-right: 6px;
+	font-variant: small-caps;
+}
+
+#faqs h2 {
+	background-color: #dfecfd;
+}
+
+#ideas h2 {
+	background-color: #fcde89;
+}
+
+#issues h2 {
+	background-color: #dcb9be;
+}
+
+#praise h2 {
+	background-color: #e4ffd6;
+}
+
+.comment_summary {
+	margin-bottom: 7px;
+}
+
+.comment_summary p {
+	font-size: 9px;
+	text-indent: 10px;
+}
+
+#comment_meta {
+	font-size: 9pt;
+}
+
+#comment_body {
+	border: 1px solid #666;
+	background-color: #ccc;
+	margin: 15px;
+}
+
+#replies h3 {
+	font-size: 13pt;
+	font-variant: small-caps;
+	text-indent: 7px;
+	text-decoration: underline;
+}
+
+.reply_meta {
+	font-size: 9pt;
+	font-weight: bold;
+	text-indent: 10px;
+}
+
+#replies {
+	margin-bottom: 25px;
+}
+
+.replyodd {
+	margin-left: 15px;
+	margin-right: 30px;
+	margin-top: 9px;
+}
+
+.replyeven {
+	margin-left: 15px;
+	margin-right: 30px;
+	background-color: #e6e6e6;
+	margin-top: 9px;
+}
+
+#new_reply {
+	margin-left: 15px;
 }

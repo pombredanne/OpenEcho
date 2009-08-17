@@ -13,67 +13,67 @@
 </div><!-- /newcomment -->
 
 {% url feedback.echo.views.newComment as new_comment_url %}
-<a href="{{ new_comment_url }}">New Comment</a>
+<a class="mainlink" href="{{ new_comment_url }}">New Comment</a>
 
 <div id="faqs">
-	<h2>Frequent Questions</h2>
+	<h2 class="category_heading">Frequent Questions</h2>
 	{% if faq_list %}
 		{% for faq in faq_list %}
 			<div class="comment_summary">
-				<a href="{% url feedback.echo.views.commentDetails faq.id %}">{{ faq.comment_summary }}</a><br />
-				By:&nbsp;{{ faq.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ faq.dstamp_created|date:'D M d Y'}}<br />
+				<a href="{% url feedback.echo.views.commentDetails faq.id %}">{{ faq.comment_summary }}</a>
+				<p>By:&nbsp;{{ faq.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ faq.dstamp_created|date:'D M d Y'}}</p>
 			</div><!-- /comment_summary -->
 		{% endfor %}
 		{% url feedback.echo.views.category 'QUESTIONS' as faq_url %}
-		<a href="{{ faq_url }}">See all FAQs</a>
+		<a class="mainlink" href="{{ faq_url }}">See all FAQs</a>
 	{% else %}
 		<p>No questions asked yet...</p>
 	{% endif %}
 </div><!-- /faqs -->
 
 <div id="ideas">
-	<h2>Ideas</h2>
+	<h2 class="category_heading">Ideas</h2>
 	{% if idea_list %}
 		{% for idea in idea_list %}
 			<div class="comment_summary">
-				<a href="{% url feedback.echo.views.commentDetails idea.id %}">{{ idea.comment_summary }}</a><br />
-				By:&nbsp;{{ idea.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ idea.dstamp_created|date:'D M d Y'}}<br />
+				<a href="{% url feedback.echo.views.commentDetails idea.id %}">{{ idea.comment_summary }}</a>
+				<p>By:&nbsp;{{ idea.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ idea.dstamp_created|date:'D M d Y'}}</p>
 			</div><!-- /comment_summary -->
 		{% endfor %}
 		{% url feedback.echo.views.category 'IDEAS' as idea_url %}
-		<a href="{{ idea_url }}">See all suggestions</a>
+		<a class="mainlink" href="{{ idea_url }}">See all suggestions</a>
 	{% else %}
 		<p>No ideas yet</p>
 	{% endif %}
 </div><!-- /ideas -->
 
 <div id="issues">
-	<h2>Common Issues</h2>
+	<h2 class="category_heading">Common Issues</h2>
 	{% if issue_list %}
 		{% for issue in issue_list %}
 			<div class="comment_summary">
-				<a href="{% url feedback.echo.views.commentDetails issue.id %}">{{ issue.comment_summary }}</a><br />
-				By:&nbsp;{{ issue.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ issue.dstamp_created|date:'D M d Y'}}<br />
+				<a href="{% url feedback.echo.views.commentDetails issue.id %}">{{ issue.comment_summary }}</a>
+				<p>By:&nbsp;{{ issue.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ issue.dstamp_created|date:'D M d Y'}}</p>
 			</div><!-- /comment_summary -->
 		{% endfor %}
 		{% url feedback.echo.views.category 'ISSUES' as issues_url %}
-		<a href="{{ issues_url }}">See all problem reports</a>
+		<a class="mainlink" href="{{ issues_url }}">See all problem reports</a>
 	{% else %}
 		<p>Yeah! No Problems!</p>
 	{% endif %}
 </div><!-- /issues -->
 
 <div id="praise">
-	<h2>Kudos and Praise</h2>
+	<h2 class="category_heading">Kudos and Praise</h2>
 	{% if praise_list %}
 		{% for praise in praise_list %}
 			<div class="comment_summary">
-				<a href="{% url feedback.echo.views.commentDetails praise.id %}">{{ praise.comment_summary }}</a><br />
-				By:&nbsp;{{ praise.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ praise.dstamp_created|date:'D M d Y'}}<br />
+				<a href="{% url feedback.echo.views.commentDetails praise.id %}">{{ praise.comment_summary }}</a>
+				<p>By:&nbsp;{{ praise.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ praise.dstamp_created|date:'D M d Y'}}</p>
 			</div><!-- /comment_summary -->
 		{% endfor %}
 		{% url feedback.echo.views.category 'PRAISE' as praise_url %}
-		<a href="{{ praise_url }}">See all praise</a>
+		<a class="mainlink" href="{{ praise_url }}">See all praise</a>
 	{% else %}
 		<p>Shucks...nobody loves us... :(</p>
 	{% endif %}
