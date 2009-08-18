@@ -9,10 +9,10 @@ from django.contrib.auth import logout
 
 
 def index_view(request):
-    faq_list = Comment.objects.filter(category='QUESTIONS')[:3]
-    issue_list = Comment.objects.filter(category='ISSUES')[:3]
-    idea_list = Comment.objects.filter(category='IDEAS')[:3]
-    praise_list = Comment.objects.filter(category='PRAISE')[:3]
+    faq_list = Comment.objects.filter(category='QUESTIONS')[:6]
+    issue_list = Comment.objects.filter(category='ISSUES')[:6]
+    idea_list = Comment.objects.filter(category='IDEAS')[:6]
+    praise_list = Comment.objects.filter(category='PRAISE')[:6]
     return render_to_response('echo/index.html', {'faq_list':faq_list,
                                                   'issue_list':issue_list,
                                                   'idea_list':idea_list,

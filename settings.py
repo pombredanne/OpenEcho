@@ -72,6 +72,10 @@ TEMPLATE_DIRS = (
     "/Users/robertneville/django_projects/feedback/templates"
 )
 
+HAYSTACK_SITECONF = 'feedback.echo.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = '/Users/robertneville/django_projects/feedback/mysite_index'
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -79,4 +83,5 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'feedback.echo',
     'django.contrib.admin',
+    'haystack',
 )

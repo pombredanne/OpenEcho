@@ -15,4 +15,5 @@ urlpatterns = patterns('feedback.echo.views',
     (r'^(?P<category>\w+)/category/$','category'),
     (r'^logout/$','logout_view'),
     (r'^editComment/(?P<comment_id>\d+)/$','commentDetails'),
+    (r'^search/', include('haystack.urls')),
 )
