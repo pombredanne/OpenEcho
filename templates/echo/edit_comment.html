@@ -2,19 +2,17 @@
 
 {% block content %}
 <div id="comment_meta">
-	On {{ comment.dstamp_created|date:'D, M d Y' }}, {{ comment.commenter.username }} posted the following to  <a href="{% url feedback.echo.views.category comment.category %}">{{ comment.category|lower }}</a>
+	{{ comment.commenter.username }} posted this to  <a href="{% url feedback.echo.views.category comment.category %}">{{ comment.category|lower }}</a> {{ comment.dstamp_created|timesince }} ago
 </div><!-- /comment_meta -->
 <div id="comment_body">
 	{{ comment.body }}
 </div><!-- /comment_body -->
 
 <div id="replies">
-	<h3>Replies</h3>
 	{% for reply in replies %}
-	<div class="{% cycle 'replyodd' 'replyeven' %}" >
-	
+	<div class="reply" >
 		<div class="reply_meta">
-			On {{ reply.dstamp_created|date:'D, M d Y'}},{{ reply.commenter.username }} replied
+			{{ reply.commenter.username }} replied {{ reply.dstamp_created|timesince}} ago
 		</div><!-- /reply_meta -->
 	
 		<div class="reply_body">
@@ -22,13 +20,14 @@
 		</div><!-- /reply_body -->
 	</div><!-- /reply -->
 	{% endfor %}
-</div><!-- /replies -->
 
-<div id="new_reply">
-	<form action="/echo/{{ comment.id }}/reply/" method="post">
-		<input type="hidden" name="comment" value="{{ comment.id }}" />
-		<textarea name="body" rows="8" cols="40"></textarea><br />
-		<input type="submit" value="Reply">
-	</form>
-</div><!-- /new_reply -->
+	<div id="new_reply">
+		<form action="/echo/{{ comment.id }}/reply/" method="post">
+			<input type="hidden" name="comment" value="{{ comment.id }}" />
+			<textarea name="body" rows="5" cols="60"></textarea><br />
+			<input type="submit" value="New Reply">
+		</form>
+	</div><!-- /new_reply -->
+	
+</div><!-- /replies -->
 {% endblock %}

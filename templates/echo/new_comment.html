@@ -1,16 +1,27 @@
 {% extends "echo/base.html" %}
 
 {% block content %}
-<div id="newcomment">
-	<p>{{ category_meta.prompt }}</p>
-	<form action="/echo/postComment" method="post">
-		<input type="radio" name="category" value="QUESTIONS" /> Question<br />
-		<input type="radio" name="category" value="IDEAS" /> Ideas<br />
-		<input type="radio" name="category" value="ISSUES" /> Issues<br />
-		<input type="radio" name="category" value="PRAISE" /> Praise<br />
-		<input type="hidden" name="commenter" value="{{ user.id }}" />
-		<textarea name="body" rows="8" cols="40"></textarea><br />
-		<input type="submit" value="Post" />
+<div id="commentsearch">
+	<form action="/echo/postComment/" method="post">
+		<div id="linkbar">
+			<div class="searchlink">
+				<a id="question_link" class="link_selected" href="#">Ask a question</a>
+			</div><!-- /searchlink -->
+			<div class="searchlink">
+				<a id="idea_link" href="#">Share your ideas</a>
+			</div><!-- /searchlink -->
+			<div class="searchlink">
+				<a id="issue_link" href="#">Report an issue</a>
+			</div><!-- /searchlink -->
+			<div class="searchlink">
+				<a id="praise_link" href="#">Atta Boy</a>
+			</div><!-- /searchlink -->
+		</div><!-- /linkbar -->
+		<div id="searchbox">
+			<input type="hidden" name="category" value="PRAISE" />
+			<textarea name="search" rows="4" cols="80"></textarea><br />
+			<input type="submit" value="Continue" />
+		</div><!-- /searchbox -->
 	</form>
-</div>
+</div><!-- /newcomment -->
 {% endblock %}
