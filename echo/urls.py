@@ -16,4 +16,5 @@ urlpatterns = patterns('feedback.echo.views',
     (r'^logout/$','logout_view'),
     (r'^editComment/(?P<comment_id>\d+)/$','commentDetails'),
     (r'^search/', 'search'),
+    (r'^ajax_search/', 'ajax_search'),
 )

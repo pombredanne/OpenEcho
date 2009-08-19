@@ -20,8 +20,9 @@ def index_view(request):
                                                   'praise_list':praise_list })
 
 @login_required
-def newComment(request, category=None):
-    return render_to_response('echo/new_comment.html', {'category':category})
+def newComment(request, category=None, comment=None):
+    return render_to_response('echo/new_comment.html', {'category' : category,
+                                                        'comment' : comment})
     
 @login_required    
 def postComment(request):
@@ -59,7 +60,11 @@ def search(request):
     return render_to_response('search/search.html', { 'results' : SearchQuerySet().auto_query(searchText),
                                                       'query' : searchText })
     
-                                                           
+def ajax_search(request):
+    searchText = request.GET.get('q')                                                          
+    return render_to_response('search/ajax_search.html', { 'results' : SearchQuerySet().auto_query(searchText),
+                                                           'query' : searchText })
+                                                   
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect('/echo')

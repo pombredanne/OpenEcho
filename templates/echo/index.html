@@ -2,7 +2,7 @@
 
 {% block content %}
 <div id="commentsearch">
-	<form action="/echo/search/" method="post">
+
 		<div id="linkbar">
 			<div class="searchlink">
 				<a id="question_link" href="#">Ask a question</a>
@@ -19,14 +19,13 @@
 		</div><!-- /linkbar -->
 		<div id="searchbox">
 			<input type="hidden" name="category" value="PRAISE" />
-			<textarea name="search" rows="4" cols="80"></textarea><br />
-			<input type="submit" value="Continue" />
+			<textarea id="search" name="search" rows="4" cols="80"></textarea><br />
+			<input id="searchSubmit" type="submit" value="Continue" />
 		</div><!-- /searchbox -->
-	</form>
-</div><!-- /newcomment -->
 
-{% url feedback.echo.views.newComment as new_comment_url %}
-<a class="mainlink" href="{{ new_comment_url }}">New Comment</a>
+</div><!-- /newcomment -->
+<span id="spinner"><img src="/site_media/images/spinner.gif"/></span>
+<div id="results">&nbsp;</div>
 
 <div id="faqs">
 	<h2 class="category_heading">Frequent Questions</h2>

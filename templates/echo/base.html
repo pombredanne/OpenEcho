@@ -7,12 +7,26 @@
 	<script type="text/javascript">
 	$(document).ready(function(){
 		
+		$("#spinner").hide();
+		
 		$(".searchlink a").bind("click", function(e) {
 			$(".searchlink a.link_selected").toggleClass("link_selected");
 			$(this).toggleClass("link_selected");
 		});
 		
+		$("#searchSubmit").click( function () {
+			query = $("#search").val();
+			$("#results").html("&nbsp;").load('{% url feedback.echo.views.ajax_search %}?q=' + query);
+		});
+				
 	});
+	
+	$( document ).ajaxStart( function() {
+		$( '#spinner' ).show();
+	}).ajaxStop( function() {
+		$( '#spinner' ).hide();
+	});
+	
 	</script>
     <title>{% block title %}OpenEcho{% endblock %}</title>
 </head>
