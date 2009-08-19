@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from haystack.query import SearchQuerySet
 
 
 def index_view(request):
@@ -55,7 +56,8 @@ def category(request, category):
 
 def search(request):
     searchText = request.POST['search']
-    category = request.POST['category']
+    return render_to_response('search/search.html', { 'results' : SearchQuerySet().auto_query(searchText),
+                                                      'query' : searchText })
     
                                                            
 def logout_view(request):

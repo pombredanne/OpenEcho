@@ -1,24 +1,11 @@
 {% extends 'echo/base.html' %}
 
 {% block content %}
-    <h2>Search</h2>
-
-    <form method="get" action=".">
-        <table>
-            {{ form.as_table }}
-            <tr>
-                <td>&nbsp;</td>
-                <td>
-                    <input type="submit" value="Search">
-                </td>
-            </tr>
-        </table>
-
-        {% if page.object_list %}
-            {% for result in page.object_list %}
-                <p>
-                    {{ result.object.body }}
-                </p>
+		<p>For the search: {{ query }} ...
+        {% if results %}
+            {% for result in results %}
+                <p><span class="{{ result.object.category }}"><a href="{% url feedback.echo.views.commentDetails result.object.id %}">{{ result.object.comment_summary }}</a></span></p>
+				<p>By: {{ result.object.commenter.username }}, {{ result.object.dstamp_created|timesince}} ago</p>
             {% endfor %}
         {% else %}
             <p>No results found.</p>

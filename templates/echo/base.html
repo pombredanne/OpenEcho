@@ -4,6 +4,16 @@
 <head>
     <link rel="stylesheet" href="/site_media/stylesheets/style.css" />
 	<script type="text/javascript" src="/site_media/jquery-1.3.2.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$(".searchlink a").bind("click", function(e) {
+			$(".searchlink a.link_selected").toggleClass("link_selected");
+			$(this).toggleClass("link_selected");
+		});
+		
+	});
+	</script>
     <title>{% block title %}OpenEcho{% endblock %}</title>
 </head>
 
@@ -30,7 +40,6 @@
 	
 			<div id="main_sidebar">
 				{% block sidebar %}
-				<p>This is some right sidebar content...</p>
 				{% endblock %}
 			</div><!-- /main_sidebar -->
 		</div><!-- /content -->
@@ -38,7 +47,6 @@
 	<div class="horizontalspacer">&nbsp;</div>
 </div><!-- /container -->
 <div id="footer">
-	<p>footer</p>
 </div><!-- /footer -->
 </body>
 </html>

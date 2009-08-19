@@ -136,6 +136,30 @@ a, a:visited, a:hover {
 	padding-bottom: 5px;
 	padding-right: 5px;
 }
+#idea_link.link_selected  {
+	background-color: #e6e6e6;
+	border: 1px solid #ccc;
+	margin: 0;
+	padding-bottom: 5px;
+	padding-right: 5px;
+}
+#issue_link.link_selected  {
+	background-color: #e6e6e6;
+	border: 1px solid #ccc;
+	margin: 0;
+	padding-bottom: 5px;
+	padding-right: 5px;
+}
+#praise_link.link_selected  {
+	background-color: #e6e6e6;
+	border: 1px solid #ccc;
+	margin: 0;
+	padding-bottom: 5px;
+	padding-right: 5px;
+}
+
+
+
 
 .category_heading {
 	font-size: 12pt;
@@ -297,4 +321,22 @@ li#praise a:hover {
 #categorylist {
 	float: left;
 	margin-left: 35px;
+}
+
+/* category list class*/
+.QUESTIONS {
+	background: url(../images/help.png) no-repeat 0 1px;
+	padding-left: 19px;
+}
+.IDEAS {
+	background: url(../images/lightbulb.png) no-repeat 0 1px;
+	padding-left: 19px;
+}
+.ISSUES {
+	background: url(../images/bullet_error.png) no-repeat 0 1px;
+	padding-left: 19px;
+}
+.PRAISE {
+	background: url(../images/heart.png) no-repeat 0 1px;
+	padding-left: 19px;
 }
