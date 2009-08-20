@@ -16,9 +16,12 @@
 		
 		$("#searchSubmit").click( function () {
 			query = $("#search").val();
-			$("#results").html("&nbsp;").load('{% url feedback.echo.views.ajax_search %}?q=' + query);
+			$.post('/echo/ajax_search/', {
+				search_text : query
+			}, function(data) {
+				$("#results").html("&nbsp;").replaceWith(data); 
+			}, "html");
 		});
-				
 	});
 	
 	$( document ).ajaxStart( function() {

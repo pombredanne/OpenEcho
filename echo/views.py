@@ -61,9 +61,9 @@ def search(request):
                                                       'query' : searchText })
     
 def ajax_search(request):
-    searchText = request.GET.get('q')                                                          
-    return render_to_response('search/ajax_search.html', { 'results' : SearchQuerySet().auto_query(searchText),
-                                                           'query' : searchText })
+    print "search_text = " + request.POST['search_text']
+    return render_to_response('search/ajax_search.html', { 'results' : SearchQuerySet().auto_query(search_text),
+                                                           'query' : search_text })
                                                    
 def logout_view(request):
     logout(request)
