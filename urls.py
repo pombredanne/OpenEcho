@@ -1,3 +1,6 @@
+from settings import SITE_SRC_ROOT, os
+from django import VERSION
+
 from django.conf.urls.defaults import *
 
 # Uncomment the next two lines to enable the admin:
@@ -12,10 +15,14 @@ urlpatterns = patterns('',
     # to INSTALLED_APPS to enable admin documentation:
     # (r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
-    # Uncomment the next line to enable the admin:
-    (r'^admin/', include(admin.site.urls)),
+    # Uncomment the next line to enable the admin on Django-1.1:
+    VERSION >= (1,1) and (r'^admin/', include(admin.site.urls)) or
+
+    # Uncomment the next line to enable the admin on Django-1.0:
+                         (r'^admin/', admin.site.root),
+
     (r'^echo/', include('feedback.echo.urls')),
     (r'^$',include('feedback.echo.urls')),
     (r'^accounts/login/$', 'django.contrib.auth.views.login', {'template_name' : 'echo/login.html'}),
-    (r'^site_media/(?P<path>.*)$','django.views.static.serve',{'document_root' : '/Users/robertneville/django_projects/feedback/media'}),
+    (r'^site_media/(?P<path>.*)$','django.views.static.serve',{'document_root' : os.path.join(SITE_SRC_ROOT, 'media')}),
 )
