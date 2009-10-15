@@ -7,4 +7,4 @@
 {% else %}
     <p>No results found.</p>
 {% endif %}
-Or, if none of these match, then <a class="mainlink" href="{% url feedback.echo.views.newComment %}">add a new comment</a>
+Or, if none of these match, then <a class="mainlink" href="{% url feedback.echo.views.newComment category=category|urlencode,comment=query|urlencode %}">add a new comment</a>
