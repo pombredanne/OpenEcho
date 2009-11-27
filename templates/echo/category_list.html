@@ -5,27 +5,27 @@
 	<div id="categorynav">
 		<ul>
 			{% ifequal category 'QUESTIONS' %}
-				<li id="questions" class="current"><a href="{% url feedback.echo.views.category 'QUESTIONS' %}">Questions</a></li>
+				<li id="questions" class="current"><a href="{% url echo.views.category 'QUESTIONS' %}">Questions</a></li>
 			{% else %}
-				<li id="questions"><a href="{% url feedback.echo.views.category 'QUESTIONS' %}">Questions</a></li>
+				<li id="questions"><a href="{% url echo.views.category 'QUESTIONS' %}">Questions</a></li>
 			{% endifequal %}
 			
 			{% ifequal category 'IDEAS' %}
-				<li id="ideas" class="current"><a href="{% url feedback.echo.views.category 'IDEAS' %}">Ideas</a></li>
+				<li id="ideas" class="current"><a href="{% url echo.views.category 'IDEAS' %}">Ideas</a></li>
 			{% else %}
-				<li id="ideas"><a href="{% url feedback.echo.views.category 'IDEAS' %}">Ideas</a></li>
+				<li id="ideas"><a href="{% url echo.views.category 'IDEAS' %}">Ideas</a></li>
 			{% endifequal %}
 			
 			{% ifequal category 'ISSUES' %}
-				<li id="issues" class="current"><a href="{% url feedback.echo.views.category 'ISSUES' %}">Issues</a></li>
+				<li id="issues" class="current"><a href="{% url echo.views.category 'ISSUES' %}">Issues</a></li>
 			{% else %}
-				<li id="issues"><a href="{% url feedback.echo.views.category 'ISSUES' %}">Issues</a></li>
+				<li id="issues"><a href="{% url echo.views.category 'ISSUES' %}">Issues</a></li>
 			{% endifequal %}
 			
 			{% ifequal category 'PRAISE' %}
-				<li id="praise" class="current"><a href="{% url feedback.echo.views.category 'PRAISE' %}">Praise</a></li>
+				<li id="praise" class="current"><a href="{% url echo.views.category 'PRAISE' %}">Praise</a></li>
 			{% else %}
-				<li id="praise"><a href="{% url feedback.echo.views.category 'PRAISE' %}">Praise</a></li>
+				<li id="praise"><a href="{% url echo.views.category 'PRAISE' %}">Praise</a></li>
 			{% endifequal %}
 		</ul>
 	</div><!-- /categorynav -->
@@ -36,7 +36,7 @@
 		{% if comments %}
 			{% for comment in comments %}
 				<div class="comment_summary">
-					<a href="{% url feedback.echo.views.commentDetails comment.id %}">{{ comment.comment_summary }}</a>
+					<a href="{% url echo.views.commentDetails comment.id %}">{{ comment.comment_summary }}</a>
 					<p>By:&nbsp;{{ comment.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ comment.dstamp_created|date:'D M d Y'}}</p>
 				</div><!-- /comment_summary -->
 			{% endfor %}
@@ -50,7 +50,7 @@
 
 {% for faq in faq_list %}
 	<div class="comment_summary">
-		<a href="{% url feedback.echo.views.commentDetails faq.id %}">{{ faq.comment_summary }}</a>
+		<a href="{% url echo.views.commentDetails faq.id %}">{{ faq.comment_summary }}</a>
 		<p>By:&nbsp;{{ faq.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ faq.dstamp_created|date:'D M d Y'}}</p>
 	</div><!-- /comment_summary -->
 {% endfor %}

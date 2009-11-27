@@ -1,4 +1,4 @@
-# Django settings for feedback project.
+# Django settings for OpenEcho project.
 import os.path
  
 SITE_SRC_ROOT = os.path.dirname(__file__) 
@@ -57,7 +57,6 @@ SECRET_KEY = 'sbkag1tb^h*hczub8^a@g12ja=y1_!csy_n8ms1)1opi3uhy+('
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.load_template_source',
     'django.template.loaders.app_directories.load_template_source',
-#     'django.template.loaders.eggs.load_template_source',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -66,25 +65,24 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
 )
 
-ROOT_URLCONF = 'feedback.urls'
+ROOT_URLCONF = 'urls'
 
 TEMPLATE_DIRS = (
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
     os.path.join(SITE_SRC_ROOT, "templates")
 )
 
-HAYSTACK_SITECONF = 'feedback.echo.search_sites'
+HAYSTACK_SITECONF = 'echo.search_sites'
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = os.path.join(SITE_SRC_ROOT, 'mysite_index')
+
+LOGIN_REDIRECT_URL = '/echo/'
 
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
-    'feedback.echo',
+    'echo',
     'django.contrib.admin',
     'haystack',
 )

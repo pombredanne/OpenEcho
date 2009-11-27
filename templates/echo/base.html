@@ -15,7 +15,7 @@
 		});
 		
 		$("#searchSubmit").click( function () {
-			query = $("#search").val();
+			query = $("#search_body").val();
 			category = $(".searchlink a.link_selected").text();
 			$.post('/echo/ajax_search/', {
 				search_text : query,

@@ -1,6 +1,6 @@
 # Create your views here.
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
-from feedback.echo.models import Comment, Reply, CategoryMeta
+from echo.models import Comment, Reply, CategoryMeta
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
@@ -32,7 +32,7 @@ def postComment(request):
     u = request.user
     c.commenter = u
     c.save()
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    return render_to_response('echo/edit_comment.html', {'comment' : c})
 
 def commentDetails(request, comment_id):
     c = Comment.objects.get(pk=comment_id)
@@ -47,7 +47,8 @@ def reply(request, comment_id):
               commenter=request.user,
               body=request.POST['body'])
     r.save()
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    return render_to_response('echo/edit_comment.html', {'comment' : c,
+                                                         'replies' : c.reply_set.all()})
     
 @login_required
 def category(request, category):
@@ -63,6 +64,8 @@ def search(request):
 def ajax_search(request):
     search_text = request.POST['search_text']
     category    = request.POST['category']
+    print "search_text = [" + search_text + "]\n"
+    print "category = [" + category + "]\n"
     return render_to_response('search/ajax_search.html', { 'results' : SearchQuerySet().auto_query(search_text),
                                                            'query' : search_text,
                                                            'category' : category,

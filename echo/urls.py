@@ -1,11 +1,11 @@
 from django.conf.urls.defaults import *
-from feedback.echo.models import Comment
+from echo.models import Comment
 
 info_dict = {
     'queryset':Comment.objects.all(),
 }
 
-urlpatterns = patterns('feedback.echo.views',
+urlpatterns = patterns('echo.views',
     (r'^$', 'index_view'),
     (r'^newComment/(?P<category>.*?)/(?P<comment>.*?)/$',   'newComment'),
     (r'^newComment/$',                                      'newComment'),

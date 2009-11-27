@@ -2,7 +2,7 @@
 
 {% block content %}
 <div id="comment_meta">
-	{{ comment.commenter.username }} posted this to  <a href="{% url feedback.echo.views.category comment.category %}">{{ comment.category|lower }}</a> {{ comment.dstamp_created|timesince }} ago
+	{{ comment.commenter.username }} posted this to  <a href="{% url echo.views.category comment.category %}">{{ comment.category|lower }}</a> {{ comment.dstamp_created|timesince }} ago
 </div><!-- /comment_meta -->
 <div id="comment_body">
 	{{ comment.body }}

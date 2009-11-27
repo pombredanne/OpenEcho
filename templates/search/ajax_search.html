@@ -1,10 +1,11 @@
 {% if results %}
 	<p>Before adding, see if one of these people had a similar comment...</p>
     {% for result in results %}
-        <p><span class="{{ result.object.category }}"><a href="{% url feedback.echo.views.commentDetails result.object.id %}">{{ result.object.comment_summary }}</a></span></p>
+        <p><span class="{{ result.object.category }}"><a href="{% url echo.views.commentDetails result.object.id %}">{{ result.object.comment_summary }}</a></span></p>
 		<p>By: {{ result.object.commenter.username }}, {{ result.object.dstamp_created|timesince}} ago</p>
     {% endfor %}
+	Or, if none of these match, then <a class="mainlink" href="{% url echo.views.newComment category=category|urlencode,comment=query|urlencode %}">add a new comment</a>
 {% else %}
-    <p>No results found.</p>
+    <p>No results found, <a class="mainlink" href="{% url echo.views.newComment category=category|urlencode,comment=query|urlencode %}">click here to add it as a comment</a></p>
 {% endif %}
-Or, if none of these match, then <a class="mainlink" href="{% url feedback.echo.views.newComment category=category|urlencode,comment=query|urlencode %}">add a new comment</a>
+

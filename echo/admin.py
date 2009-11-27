@@ -7,7 +7,7 @@ Created by Robert Neville on 2009-08-14.
 Copyright (c) 2009 RetailArchitects. All rights reserved.
 """
 
-from feedback.echo.models import Comment, Reply, CategoryMeta
+from echo.models import Comment, Reply, CategoryMeta
 from django.contrib import admin
 
 class ReplyInline(admin.TabularInline):

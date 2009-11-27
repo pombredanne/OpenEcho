@@ -4,7 +4,7 @@
 		<p>For the search: {{ query }} ...
         {% if results %}
             {% for result in results %}
-                <p><span class="{{ result.object.category }}"><a href="{% url feedback.echo.views.commentDetails result.object.id %}">{{ result.object.comment_summary }}</a></span></p>
+                <p><span class="{{ result.object.category }}"><a href="{% url echo.views.commentDetails result.object.id %}">{{ result.object.comment_summary }}</a></span></p>
 				<p>By: {{ result.object.commenter.username }}, {{ result.object.dstamp_created|timesince}} ago</p>
             {% endfor %}
         {% else %}
