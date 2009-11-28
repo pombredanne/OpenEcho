@@ -15,7 +15,7 @@
 		});
 		
 		$("#searchSubmit").click( function () {
-			query = escape($("#search_body").val()); //need to escape the text...
+			query = encodeURI($("#search_body").val()); //need to escape the text...
 			category = $(".searchlink a.link_selected").text();
 			$.post('/echo/ajax_search/', {
 				search_text : query,
