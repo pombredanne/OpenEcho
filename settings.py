@@ -53,11 +53,7 @@ ADMIN_MEDIA_PREFIX = '/media/'
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'sbkag1tb^h*hczub8^a@g12ja=y1_!csy_n8ms1)1opi3uhy+('
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.load_template_source',
-    'django.template.loaders.app_directories.load_template_source',
-)
+
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -71,18 +67,27 @@ TEMPLATE_DIRS = (
     os.path.join(SITE_SRC_ROOT, "templates")
 )
 
-HAYSTACK_SITECONF = 'echo.search_sites'
-HAYSTACK_SEARCH_ENGINE = 'whoosh'
-HAYSTACK_WHOOSH_PATH = os.path.join(SITE_SRC_ROOT, 'mysite_index')
-
-LOGIN_REDIRECT_URL = '/echo/'
-
 TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.auth",
     "django.core.context_processors.debug",
     "django.core.context_processors.i18n",
     "django.core.context_processors.media",
 )
+
+# List of callables that know how to import templates from various sources.
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.load_template_source',
+    'django.template.loaders.app_directories.load_template_source',
+)
+
+HAYSTACK_SITECONF = 'echo.search_sites'
+HAYSTACK_SEARCH_ENGINE = 'whoosh'
+HAYSTACK_WHOOSH_PATH = os.path.join(SITE_SRC_ROOT, 'mysite_index')
+
+LOGIN_REDIRECT_URL = '/echo/'
+AUTH_PROFILE_MODULE = 'openecho.UserProfile'
+
+
 
 INSTALLED_APPS = (
     'django.contrib.auth',
