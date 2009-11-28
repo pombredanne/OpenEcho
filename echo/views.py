@@ -6,6 +6,7 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.template import RequestContext
 from haystack.query import SearchQuerySet
 
 
@@ -14,15 +15,18 @@ def index_view(request):
     issue_list = Comment.objects.filter(category='ISSUES')[:6]
     idea_list = Comment.objects.filter(category='IDEAS')[:6]
     praise_list = Comment.objects.filter(category='PRAISE')[:6]
+    print "current user is [%s]" % request.user.username
     return render_to_response('echo/index.html', {'faq_list':faq_list,
                                                   'issue_list':issue_list,
                                                   'idea_list':idea_list,
-                                                  'praise_list':praise_list })
+                                                  'praise_list':praise_list },
+                              context_instance=RequestContext(request))
 
 @login_required
 def newComment(request, category=None, comment=None):
     return render_to_response('echo/new_comment.html', {'category' : category,
-                                                        'comment' : comment})
+                                                        'comment' : comment},
+                               context_instance=RequestContext(request))
     
 @login_required    
 def postComment(request):
@@ -32,13 +36,15 @@ def postComment(request):
     u = request.user
     c.commenter = u
     c.save()
-    return render_to_response('echo/edit_comment.html', {'comment' : c})
+    return render_to_response('echo/edit_comment.html', {'comment' : c},
+                              context_instance=RequestContext(request))
 
 def commentDetails(request, comment_id):
     c = Comment.objects.get(pk=comment_id)
     r = c.reply_set.all()
     return render_to_response('echo/edit_comment.html', {'comment' : c,
-                                                         'replies' : r})
+                                                         'replies' : r},
+                               context_instance=RequestContext(request))
         
 @login_required    
 def reply(request, comment_id):
@@ -48,18 +54,20 @@ def reply(request, comment_id):
               body=request.POST['body'])
     r.save()
     return render_to_response('echo/edit_comment.html', {'comment' : c,
-                                                         'replies' : c.reply_set.all()})
+                                                         'replies' : c.reply_set.all()},
+                               context_instance=RequestContext(request))
     
-@login_required
 def category(request, category):
     comment_list = Comment.objects.filter(category=category)
     return render_to_response('echo/category_list.html', { 'comments' : comment_list,
-                                                           'category' : category})
+                                                           'category' : category},
+                               context_instance=RequestContext(request))
 
 def search(request):
     searchText = request.POST['search']
     return render_to_response('search/search.html', { 'results' : SearchQuerySet().auto_query(searchText),
-                                                      'query' : searchText })
+                                                      'query' : searchText },
+                               context_instance=RequestContext(request))
     
 def ajax_search(request):
     search_text = request.POST['search_text']
@@ -69,7 +77,8 @@ def ajax_search(request):
     return render_to_response('search/ajax_search.html', { 'results' : SearchQuerySet().auto_query(search_text),
                                                            'query' : search_text,
                                                            'category' : category,
-                                                         })
+                                                         }  ,
+                               context_instance=RequestContext(request))
                                                    
 def logout_view(request):
     logout(request)

@@ -46,14 +46,17 @@
 		<div id="main_header">
 			{% block nav %}
 			<ul>
-		    	<li><a href="/echo/">Home</a></li>
+				<li><a href="/echo/">Home</a></li>
+			    <li>{{ user.username }}</li>
 				<li>{% if user.is_authenticated %}
 					  Welcome back {{ user.username }}. <a href="/echo/logout/">(not {{ user.username }}?)</a>
+					  <li><a href="/echo/logout/">Logout</a></li>
 					{% else %}
 					  <a href="/accounts/login/">Login</a>
 					{% endif %}
 				</li>
-		    </ul>
+
+			</ul>
 			{% endblock %}
 		</div><!-- /main_header -->
 		<div id="content">
