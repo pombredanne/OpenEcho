@@ -33,6 +33,7 @@
 		{% for faq in faq_list %}
 			<div class="comment_summary">
 				<a href="{% url echo.views.commentDetails faq.id %}">{{ faq.comment_summary }}</a>
+				<a href="{% url echo.views.commentVote faq.id %}">Vote</a>
 				<p>By:&nbsp;{{ faq.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ faq.dstamp_created|date:"D M d Y"}}</p>
 			</div><!-- /comment_summary -->
 		{% endfor %}

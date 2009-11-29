@@ -3,7 +3,7 @@ from django.shortcuts import render_to_response, get_object_or_404, get_list_or_
 from echo.models import Comment, Reply, CategoryMeta
 from echo.forms import RegistrationForm
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseNotModified
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
@@ -11,7 +11,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.template import RequestContext
 from haystack.query import SearchQuerySet
 from django import forms
-
+from voting.models import Vote
 
 def index_view(request):
     faq_list = Comment.objects.filter(category='QUESTIONS')[:6]
@@ -105,5 +105,7 @@ def ajax_search(request):
                                                          }  ,
                                context_instance=RequestContext(request))
                                                    
-
-    
+def commentVote(request, comment_id):
+    c = Comment.objects.get(pk=comment_id)
+    Vote.objects.record_vote(c,request.user,+1)
+    return render_to_response('echo/record_vote.html', {}, context_instance=RequestContext(request))

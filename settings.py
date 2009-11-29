@@ -100,4 +100,5 @@ INSTALLED_APPS = (
     'echo',
     'django.contrib.admin',
     'haystack',
+    'voting',
 )
