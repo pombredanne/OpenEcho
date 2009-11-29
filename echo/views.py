@@ -1,13 +1,16 @@
 # Create your views here.
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from echo.models import Comment, Reply, CategoryMeta
+from echo.forms import RegistrationForm
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
+from django.contrib.auth.forms import UserCreationForm
 from django.template import RequestContext
 from haystack.query import SearchQuerySet
+from django import forms
 
 
 def index_view(request):
@@ -15,13 +18,35 @@ def index_view(request):
     issue_list = Comment.objects.filter(category='ISSUES')[:6]
     idea_list = Comment.objects.filter(category='IDEAS')[:6]
     praise_list = Comment.objects.filter(category='PRAISE')[:6]
-    print "current user is [%s]" % request.user.username
     return render_to_response('echo/index.html', {'faq_list':faq_list,
                                                   'issue_list':issue_list,
                                                   'idea_list':idea_list,
                                                   'praise_list':praise_list },
                               context_instance=RequestContext(request))
 
+
+#user authentication and management...
+def logout_view(request):
+    logout(request)
+    return HttpResponseRedirect('/echo')
+    
+def registration(request):
+    f = RegistrationForm()
+    
+    if request.method == 'POST':
+        f = RegistrationForm(request.POST)
+        if f.is_valid():
+            print "got validated registration entry...\n" 
+            f.saveUnvalidatedUser()
+            return HttpResponseRedirect('/echo/')
+    else:
+        f = RegistrationForm()
+    
+    return render_to_response("registration/register.html", {
+                                  'form' : f },
+                              context_instance=RequestContext(request))
+    
+    
 @login_required
 def newComment(request, category=None, comment=None):
     return render_to_response('echo/new_comment.html', {'category' : category,
@@ -80,7 +105,5 @@ def ajax_search(request):
                                                          }  ,
                                context_instance=RequestContext(request))
                                                    
-def logout_view(request):
-    logout(request)
-    return HttpResponseRedirect('/echo')
+
     

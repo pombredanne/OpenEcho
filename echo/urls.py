@@ -17,4 +17,5 @@ urlpatterns = patterns('echo.views',
     (r'^editComment/(?P<comment_id>\d+)/$','commentDetails'),
     (r'^search/', 'search'),
     (r'^ajax_search/', 'ajax_search'),
+    (r"^register/$", 'registration'),
 )

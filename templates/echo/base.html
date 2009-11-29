@@ -48,13 +48,13 @@
 			<ul>
 				<li><a href="/echo/">Home</a></li>
 			    <li>{{ user.username }}</li>
-				<li>{% if user.is_authenticated %}
-					  Welcome back {{ user.username }}. <a href="/echo/logout/">(not {{ user.username }}?)</a>
-					  <li><a href="/echo/logout/">Logout</a></li>
-					{% else %}
-					  <a href="/accounts/login/">Login</a>
-					{% endif %}
-				</li>
+				{% if user.is_authenticated %}
+					<li>Welcome back {{ user.username }}. <a href="/echo/logout/">(not {{ user.username }}?)</a></li>
+					<li><a href="/echo/logout">Logout</a></li>
+				{% else %}
+					<li><a href="/accounts/login/">Login</a></li>
+					<li><a href="/echo/register/">Sign up</a></li>	
+				{% endif %}
 
 			</ul>
 			{% endblock %}
