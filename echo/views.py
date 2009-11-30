@@ -1,7 +1,7 @@
 # Create your views here.
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
 from echo.models import Comment, Reply, CategoryMeta
-from echo.forms import RegistrationForm
+from echo.forms import RegistrationForm, ConfirmRegistration
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect, HttpResponseNotModified
 from django.contrib.auth.models import User
@@ -31,12 +31,10 @@ def logout_view(request):
     return HttpResponseRedirect('/echo')
     
 def registration(request):
-    f = RegistrationForm()
     
     if request.method == 'POST':
         f = RegistrationForm(request.POST)
         if f.is_valid():
-            print "got validated registration entry...\n" 
             f.saveUnvalidatedUser()
             return HttpResponseRedirect('/echo/')
     else:
@@ -45,8 +43,28 @@ def registration(request):
     return render_to_response("registration/register.html", {
                                   'form' : f },
                               context_instance=RequestContext(request))
+
+def confirmRegistration(request, user=None, activation_key=None):
     
-    
+    if request.method == 'POST':
+        f = RegistrationForm(request.POST)
+        if f.is_valid():
+            try:
+                f.validateUserRegistration()
+                message = "Your user is now activated!"
+            except DoesNotExist:
+                message = "User doesn't exist?"
+            return render_to_respose("registration/complete_registration.html", {
+                                        'message' : message },
+                                      context_instance=RequestContext(request))  
+    else:
+        #initial GET...
+        u = get_object_or_404(User,username=user, password=activation_key)
+        f = ConfirmRegistration(request.GET)
+        return render_to_response("registration/confirm_registration.html", {
+                                    'form' : f },
+                                   context_instance=RequestContext(request))
+
 @login_required
 def newComment(request, category=None, comment=None):
     return render_to_response('echo/new_comment.html', {'category' : category,

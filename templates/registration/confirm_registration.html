@@ -1,0 +1,8 @@
+{% extends "echo/base.html" %}
+
+{% block content %}
+<form action="/echo/confirm_registration/" method="POST">
+	{{ form.as_p }}
+	<input type="submit" value="Confirm" />
+</form>
+{% endblock %}
