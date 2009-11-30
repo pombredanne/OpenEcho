@@ -1,6 +1,8 @@
 from django import forms
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, SiteProfileNotAvailable
 from django.core.mail import EmailMultiAlternatives
+
+from echo.models import UserProfile
 
 class RegistrationForm(forms.Form):
     firstName = forms.CharField(max_length=80, 
@@ -22,6 +24,10 @@ class RegistrationForm(forms.Form):
                                required=False,
                                help_text="If you don't specify a username, your email address will be used.")
                                
+    company = forms.CharField(max_length=50,
+                              label='Company',
+                              required=False)
+                               
     
     def saveUnvalidatedUser(self):
         if self.is_valid():
@@ -36,6 +42,12 @@ class RegistrationForm(forms.Form):
             newuser.first_name = self.cleaned_data['firstName']
             newuser.last_name = self.cleaned_data['lastName']
             newuser.save()
+            try:
+                p = newuser.get_profile()
+                p.company = self.cleaned_data['company']
+                p.save()
+            except SiteProfileNotAvailable, DoesNotExist:
+                pass
             self.emailPassword(random_pass)
             
     def emailPassword(self, newpassword):

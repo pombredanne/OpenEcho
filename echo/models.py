@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.forms import ModelForm
+from django.db.models.signals import post_save
 
 import datetime
 
@@ -53,4 +54,11 @@ class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
     company = models.CharField(max_length=100)
     max_votes = models.IntegerField("Maximum # of Votes",default=5)
-        
+    
+    def __unicode__(self):
+        return self.user.username + " profile"
+     
+def user_post_save(sender, instance, **kwargs):
+    profile, new = UserProfile.objects.get_or_create(user=instance)   
+
+post_save.connect(user_post_save, sender=User)

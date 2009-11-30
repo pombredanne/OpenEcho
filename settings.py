@@ -88,7 +88,7 @@ HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = os.path.join(SITE_SRC_ROOT, 'mysite_index')
 
 LOGIN_REDIRECT_URL = '/echo/'
-AUTH_PROFILE_MODULE = 'openecho.UserProfile'
+AUTH_PROFILE_MODULE = 'echo.UserProfile'
 
 
 
