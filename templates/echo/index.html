@@ -33,7 +33,7 @@
 		{% for faq in faq_list %}
 			<div class="comment_summary">
 				<a href="{% url echo.views.commentDetails faq.id %}">{{ faq.comment_summary }}</a>
-				<a href="{% url echo.views.commentVote faq.id %}">Vote</a>
+				<a href="{% url echo.views.commentVote faq.id %}">Me too!</a>
 				<p>By:&nbsp;{{ faq.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ faq.dstamp_created|date:"D M d Y"}}</p>
 			</div><!-- /comment_summary -->
 		{% endfor %}
@@ -50,6 +50,7 @@
 		{% for idea in idea_list %}
 			<div class="comment_summary">
 				<a href="{% url echo.views.commentDetails idea.id %}">{{ idea.comment_summary }}</a>
+				<a href="{% url echo.views.commentVote idea.id %}">I like this!</a>
 				<p>By:&nbsp;{{ idea.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ idea.dstamp_created|date:"D M d Y"}}</p>
 			</div><!-- /comment_summary -->
 		{% endfor %}
@@ -66,6 +67,7 @@
 		{% for issue in issue_list %}
 			<div class="comment_summary">
 				<a href="{% url echo.views.commentDetails issue.id %}">{{ issue.comment_summary }}</a>
+				<a href="{% url echo.views.commentVote issue.id %}">I have the same problem!</a>
 				<p>By:&nbsp;{{ issue.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ issue.dstamp_created|date:"D M d Y"}}</p>
 			</div><!-- /comment_summary -->
 		{% endfor %}
@@ -82,6 +84,7 @@
 		{% for praise in praise_list %}
 			<div class="comment_summary">
 				<a href="{% url echo.views.commentDetails praise.id %}">{{ praise.comment_summary }}</a>
+				<a href="{% url echo.views.commentVote praise.id %}">Me too!</a>
 				<p>By:&nbsp;{{ praise.commenter.username }}&nbsp;&nbsp;On:&nbsp;{{ praise.dstamp_created|date:"D M d Y"}}</p>
 			</div><!-- /comment_summary -->
 		{% endfor %}

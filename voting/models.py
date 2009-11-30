@@ -18,14 +18,14 @@ class Vote(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id    = models.PositiveIntegerField()
     object       = generic.GenericForeignKey('content_type', 'object_id')
-    vote         = models.SmallIntegerField(choices=SCORES)
+    vote         = models.SmallIntegerField()
 
     objects = VoteManager()
 
     class Meta:
         db_table = 'votes'
         # One vote per user per object
-        unique_together = (('user', 'content_type', 'object_id'),)
+        # unique_together = (('user', 'content_type', 'object_id'),)
 
     def __unicode__(self):
         return u'%s: %s on %s' % (self.user, self.vote, self.object)

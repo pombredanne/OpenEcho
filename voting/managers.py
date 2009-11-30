@@ -112,7 +112,7 @@ class VoteManager(models.Manager):
             if vote == 0:
                 v.delete()
             else:
-                v.vote = vote
+                v.vote = v.vote + vote
                 v.save()
         except models.ObjectDoesNotExist:
             if vote != 0:

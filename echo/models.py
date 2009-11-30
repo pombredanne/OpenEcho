@@ -51,8 +51,6 @@ class ReplyForm(ModelForm):
         
 class UserProfile(models.Model):
     user = models.ForeignKey(User, unique=True)
-    email = models.CharField(max_length=100)
-    firstName = models.CharField(max_length=100)
-    lastName = models.CharField(max_length=100)
     company = models.CharField(max_length=100)
+    max_votes = models.IntegerField("Maximum # of Votes",default=5)
         

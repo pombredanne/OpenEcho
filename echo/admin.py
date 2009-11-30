@@ -7,7 +7,7 @@ Created by Robert Neville on 2009-08-14.
 Copyright (c) 2009 RetailArchitects. All rights reserved.
 """
 
-from echo.models import Comment, Reply, CategoryMeta
+from echo.models import Comment, Reply, CategoryMeta, UserProfile
 from django.contrib import admin
 
 class ReplyInline(admin.TabularInline):
@@ -23,6 +23,10 @@ class CommentAdmin(admin.ModelAdmin):
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('category','prompt')
+
+class ProfileAdmin(admin.ModelAdmin):
+    pass
     
 admin.site.register(Comment, CommentAdmin)
 admin.site.register(CategoryMeta, CategoryAdmin)
+admin.site.register(UserProfile, ProfileAdmin)
