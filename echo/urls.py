@@ -19,5 +19,6 @@ urlpatterns = patterns('echo.views',
     (r'^ajax_search/', 'ajax_search'),
     (r'^register/$', 'registration'),
     (r'^confirm_registration/(?P<user>.*?)/(?P<activation_key>.*?)/$','confirmRegistration'),
+    (r'^confirm_registration/$','confirmRegistration'),
     (r'^voted/(?P<comment_id>\d+)/$', 'commentVote'),
 )

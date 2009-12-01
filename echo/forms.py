@@ -2,7 +2,8 @@ from django import forms
 from django.contrib.auth.models import User, SiteProfileNotAvailable
 from django.core.mail import EmailMultiAlternatives
 from django.core.urlresolvers import reverse
-from django.db.models import DoesNotExist
+from django.forms import PasswordInput, HiddenInput
+from settings import ROOT_URI
 
 from echo.models import UserProfile
 
@@ -34,12 +35,8 @@ class RegistrationForm(forms.Form):
     def saveUnvalidatedUser(self):
         if self.is_valid():
             random_pass = User.objects.make_random_password()
-            if self.cleaned_data['username']:
-                usr = self.cleaned_data['username']
-            else:
-                usr = self.cleaned_data['email']
-                
-            newuser = User.objects.create_user(usr,self.cleaned_data['email'],random_pass)
+            
+            newuser = User.objects.create_user(self.determineUsername(),self.cleaned_data['email'],random_pass)
             newuser.is_active = False
             newuser.first_name = self.cleaned_data['firstName']
             newuser.last_name = self.cleaned_data['lastName']
@@ -57,14 +54,25 @@ class RegistrationForm(forms.Form):
             subject = 'Complete your registration...'
             from_email = 'rob@openecho.org'
             to = self.cleaned_data['email']
-            activation_url = reverse('/confirmRegistration')
+            activation_url = reverse('echo.views.confirmRegistration',args=(self.determineUsername(),newpassword,))
             
             text_content = 'Your temporary password is %s' % newpassword
-            html_content = '<p>Your temporary password is %s. <a href="%s">Click here to activate your account</a></p>' % newpassword, activation_url
+            html_content = '<p>Your temporary password is %s. <a href="%s%s">Click here to activate your account</a></p>' % (newpassword, ROOT_URI, activation_url)
             
             msg = EmailMultiAlternatives(subject,text_content,from_email,[to])
             msg.attach_alternative(html_content, "text/html")
             msg.send()
+            
+            
+    def determineUsername(self):
+        if self.is_valid():
+            if self.cleaned_data['username']:
+                return self.cleaned_data['username']
+            else:
+                return self.cleaned_data['email']
+        else:
+            return None
+                
             
 class ConfirmRegistration(forms.Form):
     password1 = forms.CharField(max_length=20,
@@ -91,7 +99,7 @@ class ConfirmRegistration(forms.Form):
         if self.is_valid():
             u = User.objects.get(username=self.cleaned_data['user_name'])
             if not u:
-                raise DoesNotExist
+                raise User.DoesNotExist
             else:
                 u.is_active = True
                 u.set_password(self.cleaned_data['password1'])

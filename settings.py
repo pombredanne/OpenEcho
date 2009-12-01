@@ -91,7 +91,7 @@ HAYSTACK_WHOOSH_PATH = os.path.join(SITE_SRC_ROOT, 'mysite_index')
 LOGIN_REDIRECT_URL = '/echo/'
 AUTH_PROFILE_MODULE = 'echo.UserProfile'
 
-
+ROOT_URI = 'http://localhost:8000'
 
 INSTALLED_APPS = (
     'django.contrib.auth',

@@ -1,5 +1,6 @@
 # Create your views here.
 from django.shortcuts import render_to_response, get_object_or_404, get_list_or_404
+from django.http import Http404
 from echo.models import Comment, Reply, CategoryMeta
 from echo.forms import RegistrationForm, ConfirmRegistration
 from django.core.urlresolvers import reverse
@@ -47,7 +48,8 @@ def registration(request):
 def confirmRegistration(request, user=None, activation_key=None):
     
     if request.method == 'POST':
-        f = RegistrationForm(request.POST)
+        print request.POST
+        f = ConfirmRegistration(request.POST)
         if f.is_valid():
             try:
                 f.validateUserRegistration()
@@ -58,12 +60,17 @@ def confirmRegistration(request, user=None, activation_key=None):
                                         'message' : message },
                                       context_instance=RequestContext(request))  
     else:
-        #initial GET...
-        u = get_object_or_404(User,username=user, password=activation_key)
-        f = ConfirmRegistration(request.GET)
-        return render_to_response("registration/confirm_registration.html", {
-                                    'form' : f },
-                                   context_instance=RequestContext(request))
+        #initial GET...        
+        u = get_object_or_404(User,username=user)
+        if u.check_password(activation_key):
+            f = ConfirmRegistration()
+            f.user_name = user
+            f.activation_key = activation_key
+        else:
+            raise Http404
+    return render_to_response("registration/confirm_registration.html", {
+                                'form' : f },
+                               context_instance=RequestContext(request))
 
 @login_required
 def newComment(request, category=None, comment=None):
